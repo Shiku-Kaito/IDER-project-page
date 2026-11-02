@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <nav class="nav" aria-label="Main navigation"><div class="nav-inner"><a class="brand" href="#home">IDER<span class="brand-mark">.</span></a><div class="nav-links"><a href="#overview">Overview</a><a href="#abstract">Abstract</a><a href="#citation">Citation</a></div></div></nav>
+  <nav class="nav" aria-label="Main navigation"><div class="nav-inner"><a class="brand" href="#home">IDER<span class="brand-mark">.</span></a><div class="nav-links"><a href="#overview">Overview</a><a href="#abstract">Abstract</a><a href="#demo">Metric Demo</a><a href="#citation">Citation</a></div></div></nav>
   <main>
     <header class="hero" id="home">
       <div class="venue">NeurIPS 2026 <span>·</span> Poster</div>
       <h1>Preserving <em>DEG Rankings</em> for Gene Discovery in Histology-Based Spatial Gene Expression Prediction</h1>
       <div class="authors"><a href="https://shiku-kaito.github.io/" target="_blank" rel="noopener">Kaito Shiku</a><span>·</span>Kazuya Nishimura<span>·</span>Yasuhiro Kojima<span>·</span>Ryoma Bise</div>
       <p class="tagline">Towards spatial gene expression prediction that prioritizes biologically meaningful gene discovery.</p>
-      <div class="actions"><a class="btn btn-primary" href="https://openreview.net/forum?id=Xfv1PJvBIG" target="_blank" rel="noopener">↗ Paper</a><a class="btn btn-secondary" href="#citation">⌘ BibTeX</a><span class="btn btn-disabled" title="Code repository will be linked after release">Code · Coming soon</span></div>
+      <div class="actions"><a class="btn btn-primary" href="https://arxiv.org/abs/2609.33928" target="_blank" rel="noopener noreferrer">↗ Paper</a><a class="btn btn-secondary" href="https://github.com/Shiku-Kaito/IDER" target="_blank" rel="noopener noreferrer">↗ Code</a><a class="btn btn-secondary" href="#demo">Try metric demo ↓</a><a class="btn btn-secondary" href="#citation">BibTeX</a></div>
     </header>
     <section class="content-section" id="overview"><div class="section-head"><span class="eyebrow">01 / Research concept</span><h2>Overview</h2></div>
       <div class="concept" id="concept-container">
@@ -27,16 +27,107 @@
     <section class="content-section" id="abstract"><div class="section-head"><span class="eyebrow">02 / Paper summary</span><h2>Abstract</h2></div>
       <p class="abstract-text">Predicting spatial gene expression from histology images could scale spatial transcriptomics (ST) to image-only cohorts, but conventional histology-based ST prediction is trained and evaluated mainly by per-gene spatial-profile reconstruction. This objective is misaligned with a key downstream use of ST: differentially expressed gene (DEG) discovery, where genes are ranked for a biological or morphology-defined contrast by evidence of between-group expression differences. We formulate image-based differential expression ranking (IDER), which asks whether predicted expression profiles preserve the contrast-specific ranked gene list obtained from measured profiles. IDER compares gene rankings induced by differential-expression statistics, rather than raw expression magnitudes or per-gene spatial correlations. We further introduce a differentiable IDER objective that aligns these statistics across genes and can be trained with morphology-derived proxy contrasts without predefined biological group labels. Experiments on public ST datasets show improved DEG-ranking agreement and pathway-enrichment overlap over conventional reconstruction objectives, including morphology-derived and pathologist-annotated tissue-region evaluations.</p>
     </section>
-    <section class="content-section" id="citation"><div class="section-head"><span class="eyebrow">03 / Reference</span><h2>Citation</h2></div><div class="code-head"><span>BibTeX</span><button type="button" id="copy-bib" aria-label="Copy BibTeX">Copy</button></div><pre class="bib"><code id="bibtex">@inproceedings{
-anonymous2026preserving,
+
+    <section class="content-section" id="demo">
+      <div class="section-head">
+        <span class="eyebrow">03 / Try it in your browser</span>
+        <h2>Interactive DEG Metrics</h2>
+        <p class="section-intro">Explore IDER's <strong>evaluation metrics</strong> without installing Python, downloading HER2ST, or using a GPU. All computations run locally in your browser.</p>
+      </div>
+      <div class="workflow" aria-label="Metric workflow">
+        <span>Expression profiles + clusters</span><span class="workflow-arrow" aria-hidden="true">→</span>
+        <span>One-vs-rest U-scores</span><span class="workflow-arrow" aria-hidden="true">→</span>
+        <span>DEG Spearman &amp; nDCG@k</span>
+      </div>
+      <div class="demo-shell">
+        <div class="demo-topbar">
+          <div><h3>Metric playground</h3><p>Compare predicted and measured gene rankings</p></div>
+          <span class="demo-chip">No backend required</span>
+        </div>
+        <div class="demo-tabs" role="tablist" aria-label="Data source">
+          <button class="demo-tab active" type="button" id="tab-toy" role="tab" aria-selected="true" aria-controls="panel-toy">Generate toy data</button>
+          <button class="demo-tab" type="button" id="tab-custom" role="tab" aria-selected="false" aria-controls="panel-custom">Use your own data</button>
+        </div>
+        <div class="demo-panel" id="panel-toy" role="tabpanel" aria-labelledby="tab-toy">
+          <div class="toy-controls">
+            <div class="field field-wide">
+              <label for="noise-slider">Prediction noise <strong id="noise-label">2.00</strong></label>
+              <input type="range" id="noise-slider" min="0" max="5" step="0.25" value="2">
+              <div class="range-caption"><span>Perfect prediction</span><span>More noisy</span></div>
+            </div>
+            <div class="field">
+              <label for="seed-input">Random seed</label>
+              <input id="seed-input" type="number" value="0" min="0" max="999999" step="1" inputmode="numeric">
+            </div>
+            <button type="button" id="toy-run" class="btn btn-primary run-button">Run evaluation <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="muted-note">Example: 90 spots, 30 genes, 3 clusters; each cluster has 5 marker genes with higher measured expression. Predicted expression is measured expression plus adjustable Gaussian noise. Values are synthetic.</p>
+        </div>
+        <div class="demo-panel" id="panel-custom" role="tabpanel" aria-labelledby="tab-custom" hidden>
+          <p class="muted-note">Paste expression matrices as comma-separated values: <strong>one spot per row, one gene per column</strong>. Both matrices must have the same shape; cluster IDs must match the number of rows. No headers or file upload required.</p>
+          <div class="custom-inputs">
+            <div class="field"><label for="custom-clusters">Cluster IDs (one per spot)</label><textarea id="custom-clusters" rows="3" spellcheck="false" aria-describedby="custom-help">0, 0, 0, 1, 1, 1</textarea></div>
+            <div class="field"><label for="custom-gt">Measured expression (X_gt)</label><textarea id="custom-gt" rows="7" spellcheck="false">7, 1, 2, 3, 2
+8, 2, 2, 1, 3
+6, 1, 3, 2, 1
+1, 7, 2, 3, 1
+2, 8, 2, 2, 1
+1, 6, 1, 2, 2</textarea></div>
+            <div class="field"><label for="custom-pred">Predicted expression (X_pred)</label><textarea id="custom-pred" rows="7" spellcheck="false">7, 2, 1, 2, 2
+6, 1, 3, 1, 2
+5, 2, 2, 3, 1
+2, 6, 3, 2, 1
+1, 7, 2, 1, 2
+2, 5, 2, 3, 1</textarea></div>
+          </div>
+          <div class="custom-actions">
+            <button type="button" id="custom-run" class="btn btn-primary">Evaluate data <span aria-hidden="true">→</span></button>
+            <button type="button" id="custom-reset" class="btn btn-secondary">Restore example</button>
+            <span class="muted-note" id="custom-help">Up to 400 spots × 300 genes (50,000 values per matrix).</span>
+          </div>
+        </div>
+        <div class="demo-error" id="demo-error" role="alert" hidden></div>
+        <div class="demo-results" id="demo-results" aria-live="polite" aria-atomic="false">
+          <div class="results-top">
+            <div><h4>Evaluation results</h4><p id="demo-summary">Synthetic example · 90 spots · 30 genes · 3 clusters</p></div>
+            <label class="select-field" for="topk-select">Top-k genes
+              <select id="topk-select"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option></select>
+            </label>
+          </div>
+          <div class="metric-cards">
+            <div class="metric-card"><span>DEG Spearman <abbr title="Mean Spearman correlation of predicted vs. measured U-score vectors across clusters">ⓘ</abbr></span><strong id="metric-spearman">—</strong><small>Mean across clusters</small></div>
+            <div class="metric-card"><span id="metric-ndcg-name">Binary nDCG@10</span><strong id="metric-ndcg">—</strong><small>Mean across clusters</small></div>
+            <div class="metric-card"><span id="metric-overlap-name">Top-10 overlap</span><strong id="metric-overlap">—</strong><small id="overlap-detail">Mean across clusters</small></div>
+          </div>
+          <div class="ranking-head">
+            <div><h4>Explore gene rankings</h4><p>Higher U-scores indicate higher expression inside the selected cluster relative to the remaining spots.</p></div>
+            <label class="select-field" for="cluster-select">Cluster
+              <select id="cluster-select"></select>
+            </label>
+          </div>
+          <div class="rankings-grid">
+            <div class="ranking-column"><h5><span class="legend-dot measured"></span> Measured: top genes</h5><div class="ranked-genes" id="measured-genes"></div></div>
+            <div class="ranking-column"><h5><span class="legend-dot predicted"></span> Predicted: top genes</h5><div class="ranked-genes" id="predicted-genes"></div></div>
+          </div>
+          <p class="muted-note foot-note">Mann–Whitney U uses average ranks for ties. Binary nDCG@k treats the <em>measured</em> top-k genes as relevant; ties among predicted scores are averaged. Spearman compares all genes' U-scores. A U-score is not a p-value.</p>
+        </div>
+      </div>
+      <div class="tutorial-links">
+        <div><strong>Want the original Python implementation?</strong><p>Use the complete notebook or import the metric functions directly into your research code.</p></div>
+        <div class="tutorial-link-buttons"><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Shiku-Kaito/IDER/blob/main/tutorial/01_tutorial_metrics.ipynb">↗ Metric notebook</a><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Shiku-Kaito/IDER/blob/main/script/culc_DEG_metrics.py">↗ Python source</a></div>
+      </div>
+    </section>
+    <section class="content-section" id="citation"><div class="section-head"><span class="eyebrow">04 / Reference</span><h2>Citation</h2></div><div class="code-head"><span>BibTeX</span><button type="button" id="copy-bib" aria-label="Copy BibTeX">Copy</button></div><pre class="bib"><code id="bibtex">@inproceedings{
+shiku2026preserving,
 title={Preserving {DEG} Rankings for Gene Discovery in Histology-Based Spatial Gene Expression Prediction},
-author={Anonymous},
+author={Kaito Shiku and Kazuya Nishimura and Yasuhiro Kojima and Ryoma Bise},
 booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
 year={2026},
-url={https://openreview.net/forum?id=Xfv1PJvBIG}
+url={https://arxiv.org/abs/2609.33928}
 }</code></pre></section>
   </main>
   <footer><span>© 2026 IDER Project</span><a href="#home">Back to top ↑</a></footer>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/metric-demo.js" defer></script>
 </body>
 </html>
