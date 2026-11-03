@@ -5,6 +5,7 @@
     <h2>Overview</h2>
   </div>
 
+  <!-- Task -->
   <p class="overview-text">
     <strong>Task.</strong>
     Histology-based spatial gene expression prediction aims to
@@ -12,16 +13,26 @@
     enabling molecular analysis without direct gene measurements.
   </p>
 
-  <div class="concept">
+  <div style="text-align: center; margin: 24px 0;">
     <img
       src="assets/images/gene_expression_prediction.png"
       alt="Predicting spatial gene expression from histology images."
+      style="
+        display: block;
+        width: 100%;
+        max-width: 650px;
+        height: auto;
+        object-fit: contain;
+        margin: 0 auto;
+      "
     >
   </div>
+
   <p class="figure-caption">
     Predicting spatial gene expression from histology images.
   </p>
 
+  <!-- Conventional approaches -->
   <p class="overview-text">
     <strong>Conventional approaches.</strong>
     Existing methods primarily focus on reconstructing the
@@ -31,6 +42,7 @@
     tissue regions.
   </p>
 
+  <!-- Our approach -->
   <p class="overview-text">
     <strong>Our approach (IDER).</strong>
     We introduce image-based differential expression ranking
@@ -40,6 +52,7 @@
     IDER better supports downstream gene discovery.
   </p>
 
+  <!-- IDER concept figure -->
   <div class="concept" id="concept-container">
     <img
       id="concept-image"
@@ -47,7 +60,11 @@
       alt="Comparison of conventional gene expression prediction and IDER"
       hidden
     >
-    <div class="concept-placeholder" id="concept-placeholder">
+
+    <div
+      class="concept-placeholder"
+      id="concept-placeholder"
+    >
       <div class="placeholder-icon">▧</div>
       <strong>Research concept figure</strong>
       <span>
