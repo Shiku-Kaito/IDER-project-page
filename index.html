@@ -1,42 +1,59 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Project page for IDER: Preserving DEG Rankings for Gene Discovery in Histology-Based Spatial Gene Expression Prediction (NeurIPS 2026).">
-  <title>IDER | NeurIPS 2026</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <nav class="nav" aria-label="Main navigation"><div class="nav-inner"><a class="brand" href="#home">IDER<span class="brand-mark">.</span></a><div class="nav-links"><a href="#overview">Overview</a><a href="#abstract">Abstract</a><a href="#citation">Citation</a></div></div></nav>
-  <main>
-    <header class="hero" id="home">
-      <div class="venue">NeurIPS 2026</div>
-      <h1>Preserving DEG Rankings for Gene Discovery in Histology-Based Spatial Gene Expression Prediction</h1>
-      <div class="authors"><a href="https://shiku-kaito.github.io/" target="_blank" rel="noopener">Kaito Shiku</a><span>·</span>Kazuya Nishimura<span>·</span>Yasuhiro Kojima<span>·</span>Ryoma Bise</div>
-      <p class="tagline">Towards spatial gene expression prediction that prioritizes biologically meaningful gene discovery.</p>
-      <div class="actions"><a class="btn btn-primary" href="https://arxiv.org/abs/2609.33928" target="_blank" rel="noopener noreferrer">↗ Paper</a><a class="btn btn-secondary" href="https://github.com/Shiku-Kaito/IDER" target="_blank" rel="noopener noreferrer">↗ Code</a><a class="btn btn-secondary" href="https://github.com/Shiku-Kaito/IDER/blob/main/tutorial/01_tutorial_metrics.ipynb" target="_blank" rel="noopener noreferrer">↗ Metric Tutorial</a><a class="btn btn-secondary" href="#citation">BibTeX</a></div>
-    </header>
-    <section class="content-section" id="overview"><div class="section-head"><span class="eyebrow">01 / Research concept</span><h2>Overview</h2></div>
-      <div class="concept" id="concept-container">
-        <img id="concept-image" src="assets/images/ider_concept.png" alt="Research concept figure for IDER" hidden>
-        <div class="concept-placeholder" id="concept-placeholder"><div class="placeholder-icon">▧</div><strong>Research concept figure</strong><span>Place your image at <code>assets/images/ider_concept.png</code></span></div>
-      </div>
-      <p class="figure-caption">IDER directly targets preservation of differential gene expression rankings, rather than only reconstructing spatial expression profiles.</p>
-    </section>
-    <section class="content-section" id="abstract"><div class="section-head"><span class="eyebrow">02 / Paper summary</span><h2>Abstract</h2></div>
-      <p class="abstract-text">Predicting spatial gene expression from histology images could scale spatial transcriptomics (ST) to image-only cohorts, but conventional histology-based ST prediction is trained and evaluated mainly by per-gene spatial-profile reconstruction. This objective is misaligned with a key downstream use of ST: differentially expressed gene (DEG) discovery, where genes are ranked for a biological or morphology-defined contrast by evidence of between-group expression differences. We formulate image-based differential expression ranking (IDER), which asks whether predicted expression profiles preserve the contrast-specific ranked gene list obtained from measured profiles. IDER compares gene rankings induced by differential-expression statistics, rather than raw expression magnitudes or per-gene spatial correlations. We further introduce a differentiable IDER objective that aligns these statistics across genes and can be trained with morphology-derived proxy contrasts without predefined biological group labels. Experiments on public ST datasets show improved DEG-ranking agreement and pathway-enrichment overlap over conventional reconstruction objectives, including morphology-derived and pathologist-annotated tissue-region evaluations.</p>
-    </section>
-    <section class="content-section" id="citation"><div class="section-head"><span class="eyebrow">03 / Reference</span><h2>Citation</h2></div><div class="code-head"><span>BibTeX</span><button type="button" id="copy-bib" aria-label="Copy BibTeX">Copy</button></div><pre class="bib"><code id="bibtex">@inproceedings{
-shiku2026preserving,
-title={Preserving {DEG} Rankings for Gene Discovery in Histology-Based Spatial Gene Expression Prediction},
-author={Kaito Shiku and Kazuya Nishimura and Yasuhiro Kojima and Ryoma Bise},
-booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
-year={2026},
-url={https://arxiv.org/abs/2609.33928}
-}</code></pre></section>
-  </main>
-  <footer><span>© 2026 IDER Project</span><a href="#home">Back to top ↑</a></footer>
-  <script src="assets/js/main.js" defer></script>
-</body>
-</html>
+
+<section class="content-section" id="overview">
+  <div class="section-head">
+    <span class="eyebrow">01 / Research concept</span>
+    <h2>Overview</h2>
+  </div>
+
+  <p class="overview-text">
+    <strong>Task.</strong>
+    Histology-based spatial gene expression prediction aims to
+    estimate gene expression from tissue images, potentially
+    enabling molecular analysis without direct gene measurements.
+  </p>
+
+  <div class="concept">
+    <img
+      src="assets/images/gene_expression_prediction.png"
+      alt="Predicting spatial gene expression from histology images."
+    >
+  </div>
+  <p class="figure-caption">
+    Predicting spatial gene expression from histology images.
+  </p>
+
+  <p class="overview-text">
+    <strong>Conventional approaches.</strong>
+    Existing methods primarily focus on reconstructing the
+    spatial expression patterns of individual genes.
+    However, accurate reconstruction does not necessarily
+    preserve the ranking of genes that distinguish different
+    tissue regions.
+  </p>
+
+  <p class="overview-text">
+    <strong>Our approach (IDER).</strong>
+    We introduce image-based differential expression ranking
+    (IDER), which explicitly aims to preserve the ranking of
+    genes based on their expression differences between tissue
+    regions. By optimizing this ranking during training,
+    IDER better supports downstream gene discovery.
+  </p>
+
+  <div class="concept" id="concept-container">
+    <img
+      id="concept-image"
+      src="assets/images/ider_concept.png"
+      alt="Comparison of conventional gene expression prediction and IDER"
+      hidden
+    >
+    <div class="concept-placeholder" id="concept-placeholder">
+      <div class="placeholder-icon">▧</div>
+      <strong>Research concept figure</strong>
+      <span>
+        Place your image at
+        <code>assets/images/ider_concept.png</code>
+      </span>
+    </div>
+  </div>
+</section>
