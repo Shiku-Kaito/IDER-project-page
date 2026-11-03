@@ -9,41 +9,23 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <style>
+    /* Task image: original size with a border */
     .task-figure {
-      max-width: 540px;
-      margin: 20px auto 14px;
-      padding: 20px;
+      width: 100%;
+      max-width: 650px;
+      margin: 24px auto;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
       background: #ffffff;
+      overflow: hidden;
       box-sizing: border-box;
     }
 
     .task-figure img {
       display: block;
       width: 100%;
-      max-width: 440px;
       height: auto;
-      margin: 0 auto;
       object-fit: contain;
-    }
-
-    .overview-text {
-      line-height: 1.75;
-      margin: 16px 0;
-    }
-
-    .task-caption {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #64748b;
-      margin: 8px 0 28px;
-    }
-
-    @media (max-width: 600px) {
-      .task-figure {
-        padding: 12px;
-      }
     }
   </style>
 </head>
@@ -86,8 +68,8 @@
       </div>
 
       <p class="tagline">
-        Towards spatial gene expression prediction that
-        prioritizes biologically meaningful gene discovery.
+        Towards spatial gene expression prediction that prioritizes
+        biologically meaningful gene discovery.
       </p>
 
       <div class="actions">
@@ -96,19 +78,16 @@
            target="_blank" rel="noopener noreferrer">
           ↗ Paper
         </a>
-
         <a class="btn btn-secondary"
            href="https://github.com/Shiku-Kaito/IDER"
            target="_blank" rel="noopener noreferrer">
           ↗ Code
         </a>
-
         <a class="btn btn-secondary"
            href="https://github.com/Shiku-Kaito/IDER/blob/main/tutorial/01_tutorial_metrics.ipynb"
            target="_blank" rel="noopener noreferrer">
           ↗ Metric Tutorial
         </a>
-
         <a class="btn btn-secondary" href="#citation">
           BibTeX
         </a>
@@ -125,31 +104,41 @@
       <!-- Task -->
       <p class="overview-text">
         <strong>Task.</strong>
-        Predicting spatial gene expression directly from
-        histology images.
+        Histology-based spatial gene expression prediction aims to
+        estimate gene expression from tissue images, potentially
+        enabling molecular analysis without direct gene measurements.
       </p>
 
+      <!-- Task image: border added, original image size -->
       <div class="task-figure">
         <img
           src="assets/images/gene_expression_prediction.png"
-          alt="Histology-based spatial gene expression prediction"
+          alt="Predicting spatial gene expression from histology images."
         >
       </div>
+
+      <p class="figure-caption">
+        Predicting spatial gene expression from histology images.
+      </p>
 
       <!-- Conventional approaches -->
       <p class="overview-text">
         <strong>Conventional approaches.</strong>
-        Focus on reconstructing the spatial expression
-        patterns of individual genes, rather than preserving
-        their importance for gene discovery.
+        Existing methods primarily focus on reconstructing the
+        spatial expression patterns of individual genes.
+        However, accurate reconstruction does not necessarily
+        preserve the ranking of genes that distinguish different
+        tissue regions.
       </p>
 
       <!-- Our approach -->
       <p class="overview-text">
         <strong>Our approach (IDER).</strong>
-        Explicitly preserves DEG rankings between tissue
-        regions, enabling more reliable gene prioritization
-        for downstream biological analysis.
+        We introduce image-based differential expression ranking
+        (IDER), which explicitly aims to preserve the ranking of
+        genes based on their expression differences between tissue
+        regions. By optimizing this ranking during training,
+        IDER better supports downstream gene discovery.
       </p>
 
       <!-- IDER concept figure -->
@@ -157,14 +146,10 @@
         <img
           id="concept-image"
           src="assets/images/ider_concept.png"
-          alt="Comparison of conventional approaches and IDER"
+          alt="Comparison of conventional gene expression prediction and IDER"
           hidden
         >
-
-        <div
-          class="concept-placeholder"
-          id="concept-placeholder"
-        >
+        <div class="concept-placeholder" id="concept-placeholder">
           <div class="placeholder-icon">▧</div>
           <strong>Research concept figure</strong>
           <span>
