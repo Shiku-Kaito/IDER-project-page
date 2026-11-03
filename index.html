@@ -4,38 +4,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Project page for IDER: Preserving DEG Rankings for Gene Discovery in Histology-Based Spatial Gene Expression Prediction (NeurIPS 2026).">
+
+  <meta
+    name="description"
+    content="Project page for IDER: Preserving DEG Rankings for Gene Discovery in Histology-Based Spatial Gene Expression Prediction (NeurIPS 2026)."
+  >
+
   <title>IDER | NeurIPS 2026</title>
+
   <link rel="stylesheet" href="assets/css/style.css">
 
   <style>
-    /* Task image: original size with a border */
-    .task-figure {
-      width: 100%;
-      max-width: 650px;
+    /* Task figure: keep the image at 650px and expand
+       the surrounding border by 16px on each side. */
+    #overview .task-figure {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
       margin: 24px auto;
+      padding: 16px;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
       background: #ffffff;
-      overflow: hidden;
       box-sizing: border-box;
+      overflow: hidden;
     }
 
-    .task-figure img {
+    #overview .task-figure img {
       display: block;
-      width: 100%;
+      width: 650px;
+      max-width: 100%;
       height: auto;
+      margin: 0 auto;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      box-sizing: border-box;
       object-fit: contain;
+    }
+
+    @media (max-width: 600px) {
+      #overview .task-figure {
+        padding: 12px;
+      }
+
+      #overview .task-figure img {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Navigation -->
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-inner">
       <a class="brand" href="#home">
         IDER<span class="brand-mark">.</span>
       </a>
+
       <div class="nav-links">
         <a href="#overview">Overview</a>
         <a href="#abstract">Abstract</a>
@@ -45,6 +73,7 @@
   </nav>
 
   <main>
+
     <!-- Hero -->
     <header class="hero" id="home">
       <div class="venue">NeurIPS 2026</div>
@@ -55,10 +84,14 @@
       </h1>
 
       <div class="authors">
-        <a href="https://shiku-kaito.github.io/"
-           target="_blank" rel="noopener">
+        <a
+          href="https://shiku-kaito.github.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Kaito Shiku
         </a>
+
         <span>·</span>
         Kazuya Nishimura
         <span>·</span>
@@ -73,21 +106,33 @@
       </p>
 
       <div class="actions">
-        <a class="btn btn-primary"
-           href="https://arxiv.org/abs/2609.33928"
-           target="_blank" rel="noopener noreferrer">
+        <a
+          class="btn btn-primary"
+          href="https://arxiv.org/abs/2609.33928"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           ↗ Paper
         </a>
-        <a class="btn btn-secondary"
-           href="https://github.com/Shiku-Kaito/IDER"
-           target="_blank" rel="noopener noreferrer">
+
+        <a
+          class="btn btn-secondary"
+          href="https://github.com/Shiku-Kaito/IDER"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           ↗ Code
         </a>
-        <a class="btn btn-secondary"
-           href="https://github.com/Shiku-Kaito/IDER/blob/main/tutorial/01_tutorial_metrics.ipynb"
-           target="_blank" rel="noopener noreferrer">
+
+        <a
+          class="btn btn-secondary"
+          href="https://github.com/Shiku-Kaito/IDER/blob/main/tutorial/01_tutorial_metrics.ipynb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           ↗ Metric Tutorial
         </a>
+
         <a class="btn btn-secondary" href="#citation">
           BibTeX
         </a>
@@ -96,6 +141,7 @@
 
     <!-- Overview -->
     <section class="content-section" id="overview">
+
       <div class="section-head">
         <span class="eyebrow">01 / Research concept</span>
         <h2>Overview</h2>
@@ -109,11 +155,12 @@
         enabling molecular analysis without direct gene measurements.
       </p>
 
-      <!-- Task image: border added, original image size -->
+      <!-- Task image: the border expands around the image -->
       <div class="task-figure">
         <img
           src="assets/images/gene_expression_prediction.png"
           alt="Predicting spatial gene expression from histology images."
+          loading="lazy"
         >
       </div>
 
@@ -143,25 +190,35 @@
 
       <!-- IDER concept figure -->
       <div class="concept" id="concept-container">
+
         <img
           id="concept-image"
           src="assets/images/ider_concept.png"
           alt="Comparison of conventional gene expression prediction and IDER"
           hidden
         >
-        <div class="concept-placeholder" id="concept-placeholder">
+
+        <div
+          class="concept-placeholder"
+          id="concept-placeholder"
+        >
           <div class="placeholder-icon">▧</div>
+
           <strong>Research concept figure</strong>
+
           <span>
             Place your image at
             <code>assets/images/ider_concept.png</code>
           </span>
         </div>
+
       </div>
+
     </section>
 
     <!-- Abstract -->
     <section class="content-section" id="abstract">
+
       <div class="section-head">
         <span class="eyebrow">02 / Paper summary</span>
         <h2>Abstract</h2>
@@ -191,10 +248,12 @@
         morphology-derived and pathologist-annotated tissue-region
         evaluations.
       </p>
+
     </section>
 
     <!-- Citation -->
     <section class="content-section" id="citation">
+
       <div class="section-head">
         <span class="eyebrow">03 / Reference</span>
         <h2>Citation</h2>
@@ -202,8 +261,11 @@
 
       <div class="code-head">
         <span>BibTeX</span>
-        <button type="button" id="copy-bib"
-                aria-label="Copy BibTeX">
+        <button
+          type="button"
+          id="copy-bib"
+          aria-label="Copy BibTeX"
+        >
           Copy
         </button>
       </div>
@@ -216,14 +278,18 @@ booktitle={The Fortieth Annual Conference on Neural Information Processing Syste
 year={2026},
 url={https://arxiv.org/abs/2609.33928}
 }</code></pre>
+
     </section>
+
   </main>
 
+  <!-- Footer -->
   <footer>
     <span>© 2026 IDER Project</span>
     <a href="#home">Back to top ↑</a>
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+
 </body>
 </html>
